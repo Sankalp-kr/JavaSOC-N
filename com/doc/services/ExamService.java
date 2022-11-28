@@ -19,8 +19,22 @@ public class ExamService  {
 		
 		return javaQuestions;
 	}
+
+	public static Question[] populateHTML() {
+
+		Exam ex=new Exam();//creation of the object of Exam
+		Exam.Question eq1=ex.new Question(1,"why you study HTML?","Aur koi choice nahi hai","Naukri ka chakkar babu bhaiya","Fee bhar di hai","refund date has passed",2);
+		Exam.Question eq2=ex.new Question(2,"why you study HTML?","Aur koi choice nahi hai","Naukri ka chakkar babu bhaiya","Fee bhar di hai","refund date has passed",2);
+		Exam.Question eq3=ex.new Question(3,"why you study HTML?","Aur koi choice nahi hai","Naukri ka chakkar babu bhaiya","Fee bhar di hai","refund date has passed",2);
+		Exam.Question eq4=ex.new Question(4,"why you study HTML?","Aur koi choice nahi hai","Naukri ka chakkar babu bhaiya","Fee bhar di hai","refund date has passed",2);
+		Exam.Question eq5=ex.new Question(5,"why you study HTML?","Aur koi choice nahi hai","Naukri ka chakkar babu bhaiya","Fee bhar di hai","refund date has passed",2);
+
+		Exam.Question[] HTMLQuestions= {eq1,eq2,eq3,eq4,eq5};
+
+		return HTMLQuestions;
+	}
 	
-	public static int[] conductJavaExam(Question[] arr) {
+	public static int[] conductExam(Question[] arr) {
 		
 		Scanner ins = new Scanner(System.in);
 		
@@ -34,11 +48,16 @@ public class ExamService  {
 		return storedans;
 	}
 	
-	public static int validateOption(int[] arr) {
+	public static int validateOption(int[] arr,int jh) {
 		int result=0;
-		Question[] r_arr = populateJava();
+		Question[] r_arr = new Question[5];
+		if(jh==1)
+			 r_arr = populateJava();
+		else if(jh==2)
+			 r_arr = populateHTML();
+
 		for(int i=0;i<arr.length;i++) {
-			if(arr[i]==r_arr[i].getCorrect_op())
+			if(arr[i]== r_arr[i].getCorrect_op())
 				result++;
 		}
 		return result;
